@@ -11,9 +11,9 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
+  def signout_user
     signout
-    redirect_to root_url
+    render json: { result:'success'}.to_json
   end
 
 end
