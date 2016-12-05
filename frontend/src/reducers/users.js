@@ -1,16 +1,16 @@
 import { USER_SUCCESS, CREATE_SUCCESS, SIGNIN_SUCCESS } from '../actions/UserActions'
 
 const initialState = {
-  user:  {},
-  current_user: {}
+  name: "",
+  email:""
 }
 
 export function user(state = initialState, action) {
   switch(action.type) {
     case USER_SUCCESS:
-      return (action.user)
+      return Object.assign({}, state, action.user)
     case CREATE_SUCCESS:
-      return (action.user)
+      return Object.assign({}, state, action.user)
     default:
       return state
   }
@@ -19,7 +19,7 @@ export function user(state = initialState, action) {
 export function current_user(state = initialState, action) {
   switch(action.type) {
     case SIGNIN_SUCCESS:
-      return (action.user)
+      return Object.assign({}, state, action.user)
     default:
       return state
   }
