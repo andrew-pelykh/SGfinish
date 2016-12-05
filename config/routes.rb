@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root 'users#home'
   get 'get_user/:id' => 'users#get_user'
   post 'create_user' => 'users#create_user'
+
+  post 'signin_user' => 'sessions#signin_user'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
