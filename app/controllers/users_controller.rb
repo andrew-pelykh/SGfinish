@@ -19,7 +19,11 @@ class UsersController < ApplicationController
   end
 
   def get_current_user
-    render json: { name:current_user.name, email:current_user.email, id:current_user.id }.to_json
+    if signed_in?
+      render json: { name:current_user.name, email:current_user.email, id:current_user.id }.to_json
+    else
+      render json: { name:"", email:"", id:""}.to_json
+    end
   end
 
   private
