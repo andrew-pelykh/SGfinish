@@ -7,7 +7,6 @@ class Home extends Component {
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getCurrentUser())
-    dispatch(getUser(this.props.params.userId || 1))
   }
 
   render() {
@@ -23,8 +22,7 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
-    current_user: state.current_user
+    user: state.current_user
   }
 }
 
