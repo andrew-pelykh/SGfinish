@@ -113,3 +113,26 @@ export function getCurrentUser() {
       .then(response => { dispatch(currentUserSuccess(response.data)) })
   }
 }
+
+export const SIGNOUT_REQUEST = 'SIGNOUT_REQUEST'
+export const SIGNOUT_SUCCESS = 'SIGNOUT_SUCCESS'
+
+export function signoutRequest() {
+  return {
+    type: SIGNOUT_REQUEST
+  }
+}
+
+export function signoutSuccess() {
+  return {
+    type: SIGNOUT_SUCCESS
+  }
+}
+
+export function signOut() {
+  return dispatch => {
+    dispatch(signoutRequest())
+    return axios.delete('http://localhost:3000/signout_user')
+      .then(response => { dispatch(signoutSuccess()) })
+  }
+}
