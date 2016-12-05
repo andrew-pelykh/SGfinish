@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { signUp } from '../../actions/UserActions'
+import { signUp, signIn } from '../../actions/UserActions'
 import { hashHistory } from 'react-router'
 
 class SignUp extends Component {
@@ -15,6 +15,13 @@ class SignUp extends Component {
            <p><input type="text" id="password_confirmation" placeholder="Password confirmation" /></p>
            <p><button>Create</button></p>
          </form>
+
+         <h2>Sign in</h2>
+          <form onSubmit={(e) => this.onSubmitSignIn(e)}>
+            <p><input type="text" id="login_email" placeholder="Email" /></p>
+            <p><input type="text" id="login_password" placeholder="Password" /></p>
+            <p><button>Create</button></p>
+          </form>
      </div>
     )
   }
@@ -23,6 +30,13 @@ class SignUp extends Component {
     event.preventDefault()
     const { dispatch } = this.props
     dispatch(signUp())
+    hashHistory.push(`/`)
+  }
+
+  onSubmitSignIn(event){
+    event.preventDefault()
+    const { dispatch } = this.props
+    dispatch(signIn())
     hashHistory.push(`/`)
   }
 }
