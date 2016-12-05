@@ -89,3 +89,27 @@ export function signIn() {
     })
   }
 }
+
+export const CURRENT_USER_REQUEST = 'CURRENT_USER_REQUEST'
+export const CURRENT_USER_SUCCESS = 'CURRENT_USER_SUCCESS'
+
+export function currentUserRequest() {
+  return {
+    type: CURRENT_USER_REQUEST
+  }
+}
+
+export function currentUserSuccess(json) {
+  return {
+    type: CURRENT_USER_SUCCESS,
+    user: json
+  }
+}
+
+export function getCurrentUser() {
+  return dispatch => {
+    dispatch(currentUserRequest())
+    return axios.get('http://localhost:3000/get_current_user/')
+      .then(response => { dispatch(currentUserSuccess(response.data)) })
+  }
+}
