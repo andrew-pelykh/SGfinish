@@ -6,10 +6,11 @@ class Home extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(getUser(1))
+    dispatch(getUser(this.props.params.userId || 1))
   }
 
   render() {
+    
 
     return (
       <div>
