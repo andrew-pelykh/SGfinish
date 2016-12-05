@@ -58,3 +58,34 @@ export function signUp() {
     })
   }
 }
+
+export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS'
+export const SIGNIN_USER = 'SIGNIN_USER'
+
+export function signinUser(user) {
+  return {
+    type: SIGNIN_USER,
+    user
+  }
+}
+
+export function signinSuccess(json) {
+  return {
+    type: SIGNIN_SUCCESS,
+    user: json
+  }
+}
+
+export function signIn() {
+    let user = {}
+    user.email = document.getElementById('login_email').value
+    user.password = document.getElementById('login_password').value
+    return dispatch => {
+      dispatch(signinUser(user))
+    return axios.post('http://localhost:3000/signin_user', {user: user})
+    .then(response => {
+      dispatch(signinSuccess(response.data))
+      return response
+    })
+  }
+}
