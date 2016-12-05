@@ -4,11 +4,14 @@ import { Route, IndexRoute } from 'react-router'
 import NavBar from './containers/NavBar'
 import Home from './views/Home'
 import SignUp from './views/SignUp'
+import User from './views/User'
+
 
 export const routes = (
   <Route path="/" component={NavBar}>
     <IndexRoute component={Home} onEnter={checkLogin} />
     <Route path="signup" component={SignUp} />
+    <Route path=":id" component={User} onEnter={checkLogin} />
   </Route>
 )
 
