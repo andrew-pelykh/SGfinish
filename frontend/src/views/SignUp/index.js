@@ -30,17 +30,27 @@ class SignUp extends Component {
     event.preventDefault()
     const { dispatch } = this.props
     dispatch(signUp())
-    hashHistory.push(`/`)
   }
 
   onSubmitSignIn(event){
     event.preventDefault()
     const { dispatch } = this.props
     dispatch(signIn())
-    hashHistory.push(`/`)
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    if ((nextProps.user.name != "" ) || (nextProps.current_user.name != "")) {
+      hashHistory.push(`/`)
+    }
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+    current_user: state.current_user
+  }
+}
 
-
-export default connect()(SignUp)
+export default connect(mapStateToProps)(SignUp)
