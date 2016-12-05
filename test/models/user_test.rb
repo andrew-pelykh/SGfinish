@@ -74,4 +74,9 @@ class UserTest < ActiveSupport::TestCase
   def test_authenticate_with_invalid_passport
     assert_not @user.authenticate("not_password")
   end
+
+  def test_remember_token_should_not_be_blank
+    @user.save
+    assert_not @user.remember_token.blank?
+  end
 end
