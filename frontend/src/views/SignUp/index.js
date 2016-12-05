@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { signUp } from '../../actions/UserActions'
+import { hashHistory } from 'react-router'
 
 class SignUp extends Component {
   render() {
@@ -22,6 +23,7 @@ class SignUp extends Component {
     event.preventDefault()
     const { dispatch } = this.props
     dispatch(signUp())
+    hashHistory.push(`/`)
   }
 }
 
