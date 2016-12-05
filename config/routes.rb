@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'create_user' => 'users#create_user'
 
   post 'signin_user' => 'sessions#signin_user'
+  delete 'signout_user' => 'sessions#signout_user'
   get 'get_current_user' => 'users#get_current_user'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
