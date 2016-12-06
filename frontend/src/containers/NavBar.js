@@ -10,6 +10,7 @@ class NavBar extends Component {
     return (
         <div>
             <a href='#'  onClick={(e) => this.onClick(e)}>SignOut</a>
+            <Link to='settings'>Edit</Link>
             {this.props.children}
         </div>
     )
