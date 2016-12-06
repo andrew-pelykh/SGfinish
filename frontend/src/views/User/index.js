@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { getUser, getCurrentUser } from '../../actions/UserActions'
+import PostsList from '../../components/Posts/PostsList'
 
 class User extends Component {
 
@@ -18,13 +19,14 @@ class User extends Component {
       dispatch(getUser(this.props.params.id))
     }
   }
-  
+
   render() {
 
 
     return (
       <div>
-        <p>Hello {this.props.user.name}</p>
+        <p>{this.props.user.name}</p>
+        <PostsList posts={[]} />
       </div>
     )
   }
