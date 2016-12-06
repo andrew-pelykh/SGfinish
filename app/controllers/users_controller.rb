@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def create_user
-    user = User.new user_params
+    user = User.new new_user_params
     if user.save
       render json: { name:user.name, email:user.email, id:user.id }.to_json
     else
@@ -26,9 +26,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_user
+    if current_user.update_attributes(update_user_params)
+      render json: { name:user.name, email:user.email, id:user.id }.to_json
+    else
+      render json: { name:"", email:"", id:""}.to_json
+    end
+  end
+
   private
 
-    def user_params
+    def new_user_params
        params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def update_user_params
+       params.require(:user).permit(:name, :email)
     end
 end
