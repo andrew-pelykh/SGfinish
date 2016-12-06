@@ -1,4 +1,4 @@
-import { USER_SUCCESS, CREATE_SUCCESS, SIGNIN_SUCCESS, CURRENT_USER_SUCCESS } from '../actions/UserActions'
+import { USER_SUCCESS, CREATE_SUCCESS, SIGNIN_SUCCESS, CURRENT_USER_SUCCESS, SIGNOUT_SUCCESS, UPDATE_SUCCESS } from '../actions/UserActions'
 
 const initialState = {
   name: "",
@@ -21,6 +21,10 @@ export function current_user(state = initialState, action) {
     case SIGNIN_SUCCESS:
       return Object.assign({}, state, action.user)
     case CURRENT_USER_SUCCESS:
+      return Object.assign({}, state, action.user)
+    case SIGNOUT_SUCCESS:
+      return Object.assign({}, state, initialState)
+    case UPDATE_SUCCESS:
       return Object.assign({}, state, action.user)
     default:
       return state
