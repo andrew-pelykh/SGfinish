@@ -136,3 +136,34 @@ export function signOut() {
       .then(response => { dispatch(signoutSuccess()) })
   }
 }
+
+export const UPDATE_SUCCESS = 'UPDATE_SUCCESS'
+export const UPDATE_USER = 'UPDATE_USER'
+
+export function updateUser(user) {
+  return {
+    type: UPDATE_USER,
+    user
+  }
+}
+
+export function updateSuccess(json) {
+  return {
+    type: UPDATE_SUCCESS,
+    user: json
+  }
+}
+
+export function editUser() {
+    let user = {}
+    user.name = document.getElementById('name').value
+    user.email = document.getElementById('email').value
+    return dispatch => {
+      dispatch(updateUser(user))
+    return axios.patch('http://localhost:3000/update_user', {user: user})
+    .then(response => {
+      dispatch(updateSuccess(response.data))
+      return response
+    })
+  }
+}
