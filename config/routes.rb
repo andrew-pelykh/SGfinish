@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete 'signout_user' => 'sessions#signout_user'
   get 'get_current_user' => 'users#get_current_user'
   patch "/update_user" => 'users#update_user'
+  get 'get_posts/:id' => 'posts#get_posts'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
