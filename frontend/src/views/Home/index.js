@@ -9,10 +9,13 @@ class Home extends Component {
     const { dispatch } = this.props
     dispatch(getCurrentUser())
   }
+  componentWillReceiveProps(nextProps) {
 
-  componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(getPosts(this.props.user.id))
+    if (nextProps.user.name !== "" && this.props.posts ==[] ) {
+      const { dispatch } = this.props
+      dispatch(getCurrentUser())
+      dispatch(getPosts(this.props.user.id))
+    }
   }
 
   render() {
