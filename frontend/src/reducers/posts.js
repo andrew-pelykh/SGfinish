@@ -1,4 +1,15 @@
-import { POSTS_SUCCESS } from '../actions/PostActions'
+import { POSTS_SUCCESS, POST_SUCCESS } from '../actions/PostActions'
+
+export function post(state = {}, action) {
+  switch(action.type) {
+    case POST_SUCCESS:
+      return Object.assign({}, state, {
+        post: action.post
+      })
+    default:
+      return state
+  }
+}
 
 export function posts(state = [], action) {
   switch(action.type) {
