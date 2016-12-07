@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { getUser, getCurrentUser } from '../../actions/UserActions'
+import { getCurrentUser, getFriends } from '../../actions/UserActions'
 import { getPosts } from '../../actions/PostActions'
 import PostsList from '../../components/Posts/PostsList'
 
@@ -10,6 +10,7 @@ class Home extends Component {
     dispatch(getCurrentUser())
     if (this.props.current_user.name !== "") {
       dispatch(getPosts(this.props.current_user.id))
+      dispatch(getFriends(this.props.current_user.id,8))
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -17,6 +18,7 @@ class Home extends Component {
     if (nextProps.current_user.name !== "" && this.props.posts ==[] ) {
       const { dispatch } = this.props
       dispatch(getPosts(nextProps.current_user.id))
+      dispatch(getFriends(nextProps.current_user.id,8))
     }
   }
 

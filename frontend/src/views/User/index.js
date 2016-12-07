@@ -1,8 +1,9 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { getUser, getCurrentUser } from '../../actions/UserActions'
+import { getUser, getCurrentUser, getFriends } from '../../actions/UserActions'
 import { getPosts } from '../../actions/PostActions'
 import PostsList from '../../components/Posts/PostsList'
+import UsersList from '../../components/Users/UsersList'
 
 class User extends Component {
 
@@ -11,6 +12,7 @@ class User extends Component {
     dispatch(getCurrentUser())
     dispatch(getUser(this.props.params.id))
     dispatch(getPosts(this.props.params.id))
+    dispatch(getFriends(this.props.params.id,8))
   }
 
   componentWillReceiveProps(nextProps) {
@@ -20,6 +22,7 @@ class User extends Component {
       dispatch(getCurrentUser())
       dispatch(getUser(nextProps.params.id))
       dispatch(getPosts(nextProps.params.id))
+      dispatch(getFriends(this.props.params.id,8))
     }
   }
 
@@ -30,6 +33,7 @@ class User extends Component {
       <div>
         <p>{this.props.user.name}</p>
         <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
+        <UsersList users={Object.keys(this.props.users).map(key => this.props.users[key])} />
       </div>
     )
   }
@@ -39,7 +43,8 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     current_user: state.current_user,
-    posts: state.posts
+    posts: state.posts,
+    users: state.users
   }
 }
 
