@@ -167,3 +167,29 @@ export function editUser() {
     })
   }
 }
+
+
+export const USERS_REQUEST = 'USERS_REQUEST'
+export const USERS_SUCCESS = 'USERS_SUCCESS'
+
+
+export function usersRequest() {
+  return {
+    type: USERS_REQUEST
+  }
+}
+
+export function usersSuccess(json) {
+  return {
+    type: USERS_SUCCESS,
+    users: json
+  }
+}
+
+export function getFriends(userId,limit=0) {
+  return dispatch => {
+    dispatch(userRequest())
+    return axios.get('http://localhost:3000/get_friends/' + userId + '/' + limit)
+      .then(response => { dispatch(usersSuccess(response.data)) })
+  }
+}
