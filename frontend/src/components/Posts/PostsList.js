@@ -7,7 +7,7 @@ export default class PostsList extends Component {
         <h2>Posts</h2>
         {this.props.posts.map(post => {
           return (
-              <div key={post.id}>
+              <div key={post.id+"_"+post.user_id}>
                 <h3>{post.title}</h3>
                 <p>{post.body}</p>
               </div>

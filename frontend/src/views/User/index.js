@@ -18,7 +18,8 @@ class User extends Component {
     if (nextProps.params.id !== this.props.params.id) {
       const { dispatch } = this.props
       dispatch(getCurrentUser())
-      dispatch(getUser(this.props.params.id))
+      dispatch(getUser(nextProps.params.id))
+      dispatch(getPosts(nextProps.params.id))
     }
   }
 

@@ -5,16 +5,18 @@ import { getPosts } from '../../actions/PostActions'
 import PostsList from '../../components/Posts/PostsList'
 
 class Home extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props
     dispatch(getCurrentUser())
+    if (this.props.current_user.name !== "") {
+      dispatch(getPosts(this.props.current_user.id))
+    }
   }
   componentWillReceiveProps(nextProps) {
-
-    if (nextProps.user.name !== "" && this.props.posts ==[] ) {
+    console.log("hasd")
+    if (nextProps.current_user.name !== "" && this.props.posts ==[] ) {
       const { dispatch } = this.props
-      dispatch(getCurrentUser())
-      dispatch(getPosts(this.props.user.id))
+      dispatch(getPosts(nextProps.current_user.id))
     }
   }
 
@@ -23,7 +25,7 @@ class Home extends Component {
 
     return (
       <div>
-        <p>{this.props.user.name}</p>
+        <p>{this.props.current_user.name}</p>
         <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
       </div>
     )
@@ -32,7 +34,7 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.current_user,
+    current_user: state.current_user,
     posts: state.posts
   }
 }
