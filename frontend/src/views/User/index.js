@@ -22,7 +22,7 @@ class User extends Component {
       dispatch(getCurrentUser())
       dispatch(getUser(nextProps.params.id))
       dispatch(getPosts(nextProps.params.id))
-      dispatch(getFriends(this.props.params.id,8))
+      dispatch(getFriends(nextProps.params.id, 8))
     }
   }
 
