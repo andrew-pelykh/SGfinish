@@ -6,6 +6,8 @@ import Home from './views/Home'
 import SignUp from './views/SignUp'
 import User from './views/User'
 import EditUser from './views/User/EditUser'
+import NewPost from './views/NewPost'
+
 
 
 export const routes = (
@@ -13,6 +15,7 @@ export const routes = (
     <IndexRoute component={Home} onEnter={checkLogin} />
     <Route path="signup" component={SignUp} />
     <Route path="settings" component={EditUser} onEnter={checkLogin} />
+    <Route path="post" component={NewPost} onEnter={checkLogin} />
     <Route path=":id" component={User} onEnter={checkLogin} />
   </Route>
 )
