@@ -193,3 +193,11 @@ export function getFriends(userId,limit=0) {
       .then(response => { dispatch(usersSuccess(response.data)) })
   }
 }
+
+export function getUsers() {
+  return dispatch => {
+    dispatch(usersRequest())
+    return axios.get('http://localhost:3000/get_users')
+      .then(response => { dispatch(usersSuccess(response.data)) })
+  }
+}
