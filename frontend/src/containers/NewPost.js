@@ -8,9 +8,9 @@ class NewPost extends Component {
     return (
       <div>
         <h2>New post</h2>
-        <form onSubmit={(e) => this.onSubmit(e)}>
-          <p><input type="text" id="title" placeholder="Title" /></p>
-          <p><input type="text" id="body"  placeholder="Tell something " /></p>
+        <form id='new_post'onSubmit={(e) => this.onSubmit(e)}>
+          <p><input type="text" name="post[title]" placeholder="Title" /></p>
+          <p><input type="text" name="post[body]"  placeholder="Tell something " /></p>
           <button>Post</button>
         </form>
       </div>
@@ -18,7 +18,8 @@ class NewPost extends Component {
   }
   onSubmit(e){
     e.preventDefault()
-    this.props.dispatch(createPost())
+    const { dispatch } = this.props
+    dispatch(createPost())
     hashHistory.push(`/`)
   }
 }

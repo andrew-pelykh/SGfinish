@@ -8,19 +8,19 @@ class SignUp extends Component {
     return (
       <div>
         <h2>Sign on</h2>
-         <form onSubmit={(e) => this.onSubmitSignOn(e)}>
-           <p><input type="text" id="name" placeholder="Name" /></p>
-           <p><input type="text" id="email" placeholder="Email" /></p>
-           <p><input type="text" id="password" placeholder="Password" /></p>
-           <p><input type="text" id="password_confirmation" placeholder="Password confirmation" /></p>
+         <form id='new_user' onSubmit={(e) => this.onSubmitSignOn(e)}>
+           <p><input type="text" name="user[name]" placeholder="Name" /></p>
+           <p><input type="text" name="user[email]" placeholder="Email" /></p>
+           <p><input type="text" name="user[password]" placeholder="Password" /></p>
+           <p><input type="text" name="user[password_confirmation]" placeholder="Password confirmation" /></p>
            <p><button>Create</button></p>
          </form>
 
          <h2>Sign in</h2>
-          <form onSubmit={(e) => this.onSubmitSignIn(e)}>
-            <p><input type="text" id="login_email" placeholder="Email" /></p>
-            <p><input type="text" id="login_password" placeholder="Password" /></p>
-            <p><button>Create</button></p>
+          <form id='signin_user' onSubmit={(e) => this.onSubmitSignIn(e)}>
+            <p><input type="text" name="user[email]" placeholder="Email" /></p>
+            <p><input type="text" name="user[password]" placeholder="Password" /></p>
+            <p><button>Sign in</button></p>
           </form>
      </div>
     )

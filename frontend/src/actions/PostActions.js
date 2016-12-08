@@ -40,13 +40,10 @@ export function postCreate() {
 }
 
 export function createPost() {
-    let new_post = {}
-    new_post.title = document.getElementById('title').value
-    new_post.body = document.getElementById('body').value
+    let post = new FormData(document.getElementById('new_post'))
     return dispatch => {
-      dispatch(postCreate(new_post))
-    return axios.post('http://localhost:3000/create_post',
-                       {post: new_post})
+      dispatch(postCreate(post))
+    return axios.post('http://localhost:3000/create_post', post )
     .then(response => {
       dispatch(postSuccess(response.data))
       return response

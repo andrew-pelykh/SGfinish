@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { editUser, getCurrentUser } from '../actions/UserActions'
+import { hashHistory } from 'react-router'
 
 class EditUser extends Component {
 
@@ -13,22 +14,25 @@ class EditUser extends Component {
     event.preventDefault()
     const { dispatch } = this.props
     dispatch(editUser())
+    hashHistory.push(`/`)
   }
-
 
   render() {
     return (
       <div>
         <h1>Settings </h1>
-        <form onSubmit={(e) => this.onSubmit(e)}>
-          <p><input type="text" id="name" onChange={this.onNameChange} defaultValue={this.props.current_user.name} /></p>
-          <p><input type="text" id="email" onChange={this.onEmailChange} defaultValue={this.props.current_user.email} /></p>
+        <form id='edit_user' onSubmit={(e) => this.onSubmit(e)}>
+          <p><input type="text" name="user[name]" onChange={this.onNameChange} defaultValue={this.props.current_user.name} /></p>
+          <p><input type="text" name="user[email]" onChange={this.onEmailChange} defaultValue={this.props.current_user.email} /></p>
+          <p><input type="text" name="user[password]" placeholder="Password" /></p>
+          <p><input type="text" name="user[password_confirmation]" placeholder="Password confirmation" /></p>
           <p><button>Update</button></p>
         </form>
       </div>
     )
   }
 }
+
 
 function mapStateToProps(state) {
   return {

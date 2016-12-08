@@ -44,14 +44,10 @@ export function createSuccess(json) {
 }
 
 export function signUp() {
-    let new_user = {}
-    new_user.name = document.getElementById('name').value
-    new_user.email = document.getElementById('email').value
-    new_user.password = document.getElementById('password').value
-    new_user.password_confirmation = document.getElementById('password_confirmation').value
+    let user = new FormData(document.getElementById('new_user'))
     return dispatch => {
-      dispatch(createUser(new_user))
-    return axios.post('http://localhost:3000/create_user', {user: new_user})
+      dispatch(createUser(user))
+    return axios.post('http://localhost:3000/create_user', user)
     .then(response => {
       dispatch(createSuccess(response.data))
       return response
@@ -77,12 +73,10 @@ export function signinSuccess(json) {
 }
 
 export function signIn() {
-    let user = {}
-    user.email = document.getElementById('login_email').value
-    user.password = document.getElementById('login_password').value
+    let user = new FormData(document.getElementById('signin_user'))
     return dispatch => {
       dispatch(signinUser(user))
-    return axios.post('http://localhost:3000/signin_user', {user: user})
+    return axios.post('http://localhost:3000/signin_user', user)
     .then(response => {
       dispatch(signinSuccess(response.data))
       return response
@@ -155,12 +149,10 @@ export function updateSuccess(json) {
 }
 
 export function editUser() {
-    let user = {}
-    user.name = document.getElementById('name').value
-    user.email = document.getElementById('email').value
+    let user = new FormData(document.getElementById('edit_user'))
     return dispatch => {
       dispatch(updateUser(user))
-    return axios.patch('http://localhost:3000/update_user', {user: user})
+    return axios.patch('http://localhost:3000/update_user', user)
     .then(response => {
       dispatch(updateSuccess(response.data))
       return response
