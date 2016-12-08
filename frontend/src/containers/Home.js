@@ -1,9 +1,9 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { getCurrentUser, getFriends } from '../../actions/UserActions'
-import { getPosts } from '../../actions/PostActions'
-import PostsList from '../../components/Posts/PostsList'
-import UsersList from '../../components/Users/UsersList'
+import { getCurrentUser, getFriends } from '../actions/UserActions'
+import { getPosts } from '../actions/PostActions'
+import PostsList from '../components/Posts/PostsList'
+import UsersList from '../components/Users/UsersList'
 
 class Home extends Component {
   componentDidMount() {

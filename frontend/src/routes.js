@@ -2,11 +2,11 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
 import NavBar from './containers/NavBar'
-import Home from './views/Home'
-import SignUp from './views/SignUp'
-import User from './views/User'
-import EditUser from './views/User/EditUser'
-import NewPost from './views/NewPost'
+import Home from './containers/Home'
+import SignUp from './containers/SignUp'
+import User from './containers/User'
+import EditUser from './containers/EditUser'
+import NewPost from './containers/NewPost'
 
 
 

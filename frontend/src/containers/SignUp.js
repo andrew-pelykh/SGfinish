@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { signUp, signIn } from '../../actions/UserActions'
+import { signUp, signIn } from '../actions/UserActions'
 import { hashHistory } from 'react-router'
 
 class SignUp extends Component {

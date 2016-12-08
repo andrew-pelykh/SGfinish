@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { createPost } from '../../actions/PostActions'
+import { createPost } from '../actions/PostActions'
 import { hashHistory } from 'react-router'
 
 class NewPost extends Component {

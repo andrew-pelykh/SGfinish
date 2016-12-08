@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { editUser, getCurrentUser } from '../../actions/UserActions'
+import { editUser, getCurrentUser } from '../actions/UserActions'
 
 class EditUser extends Component {
 
