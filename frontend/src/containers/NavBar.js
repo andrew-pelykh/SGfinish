@@ -10,6 +10,7 @@ class NavBar extends Component {
     return (
         <div>
             <Link to='/'> Home </Link>
+            <Link to='users'> All users </Link>
             <Link to='settings'> Edit </Link>
             <Link to='post'> New post </Link>
             <a href='#'  onClick={(e) => this.onClick(e)}> SignOut </a>

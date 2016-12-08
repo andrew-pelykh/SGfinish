@@ -5,6 +5,7 @@ import NavBar from './containers/NavBar'
 import Home from './containers/Home'
 import SignUp from './containers/SignUp'
 import User from './containers/User'
+import Users from './containers/Users'
 import EditUser from './containers/EditUser'
 import NewPost from './containers/NewPost'
 
@@ -16,6 +17,7 @@ export const routes = (
     <Route path="signup" component={SignUp} />
     <Route path="settings" component={EditUser} onEnter={checkLogin} />
     <Route path="post" component={NewPost} onEnter={checkLogin} />
+    <Route path="users" component={Users} onEnter={checkLogin} />
     <Route path=":id" component={User} onEnter={checkLogin} />
   </Route>
 )
