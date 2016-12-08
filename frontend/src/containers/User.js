@@ -34,9 +34,9 @@ class User extends Component {
       <div>
         <img src={this.props.user.avatar}/>
         <p>{this.props.user.name}</p>
-        <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
         <p><Link to={'friends/'+ this.props.user.id}> Friends </Link></p>
         <UsersList users={Object.keys(this.props.users).map(key => this.props.users[key])} />
+        <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
       </div>
     )
   }

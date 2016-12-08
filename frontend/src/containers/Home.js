@@ -30,9 +30,9 @@ class Home extends Component {
       <div>
        <img src={this.props.current_user.avatar}/>
         <p>{this.props.current_user.name}</p>
-        <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
         <p><Link to={'friends/'+ this.props.current_user.id}> Friends </Link></p>
         <UsersList users={Object.keys(this.props.users).map(key => this.props.users[key])} />
+        <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
       </div>
     )
   }
