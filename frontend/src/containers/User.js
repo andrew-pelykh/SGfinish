@@ -4,6 +4,7 @@ import { getUser, getCurrentUser, getFriends } from '../actions/UserActions'
 import { getPosts } from '../actions/PostActions'
 import PostsList from '../components/Posts/PostsList'
 import UsersList from '../components/Users/UsersList'
+import { Link } from 'react-router'
 
 class User extends Component {
 
@@ -33,6 +34,7 @@ class User extends Component {
       <div>
         <p>{this.props.user.name}</p>
         <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
+        <p><Link to={'friends/'+ this.props.user.id}> Friends </Link></p>
         <UsersList users={Object.keys(this.props.users).map(key => this.props.users[key])} />
       </div>
     )
