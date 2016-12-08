@@ -20,25 +20,26 @@ class UsersController < ApplicationController
   def create_user
     user = User.new new_user_params
     if user.save
-      render json: { name:user.name, email:user.email, id:user.id }.to_json
+      sign_in user
+      render json: { name:user.name, email:user.email, id:user.id, avatar:user.avatar.url }.to_json
     else
-      render json: { name:user.name, email:user.email, id:user.id }.to_json
+      render json: { name:"", email:"", id:"",avatar:""}.to_json
     end
   end
 
   def get_current_user
     if signed_in?
-      render json: { name:current_user.name, email:current_user.email, id:current_user.id }.to_json
+      render json: { name:current_user.name, email:current_user.email, id:current_user.id, avatar:current_user.avatar.url }.to_json
     else
-      render json: { name:"", email:"", id:""}.to_json
+      render json: { name:"", email:"", id:"",avatar:""}.to_json
     end
   end
 
   def update_user
     if current_user.update_attributes(update_user_params)
-      render json: { name:user.name, email:user.email, id:user.id }.to_json
+      render json: { name:current_user.name, email:current_user.email, id:current_user.id, avatar:current_user.avatar.url }.to_json
     else
-      render json: { name:"", email:"", id:""}.to_json
+      render json: { name:"", email:"", id:"",avatar:""}.to_json
     end
   end
 
@@ -49,6 +50,6 @@ class UsersController < ApplicationController
     end
 
     def update_user_params
-       params.require(:user).permit(:name, :email)
+       params.require(:user).permit(:name, :email,:password,:avatar, :password_confirmation)
     end
 end

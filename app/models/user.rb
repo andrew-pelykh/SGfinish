@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
 
+  mount_uploader :avatar, AvatarUploader
+
   has_secure_password
   has_many :posts, dependent: :destroy
   has_many :friendships
