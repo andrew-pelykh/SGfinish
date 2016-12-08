@@ -9,8 +9,6 @@ export function user(state = initialState, action) {
   switch(action.type) {
     case USER_SUCCESS:
       return Object.assign({}, state, action.user)
-    case CREATE_SUCCESS:
-      return Object.assign({}, state, action.user)
     default:
       return state
   }
@@ -25,6 +23,8 @@ export function current_user(state = initialState, action) {
     case SIGNOUT_SUCCESS:
       return Object.assign({}, state, initialState)
     case UPDATE_SUCCESS:
+      return Object.assign({}, state, action.user)
+    case CREATE_SUCCESS:
       return Object.assign({}, state, action.user)
     default:
       return state
