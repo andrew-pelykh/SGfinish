@@ -9,6 +9,14 @@ class UsersController < ApplicationController
     render json: { name:user.name, email:user.email, id:user.id }.to_json
   end
 
+  def get_users
+    if params[:limit] == 0
+      render json: User.all.to_json
+    else
+      render json: User.all.limit(params[:limit]).to_json
+    end
+  end
+
   def create_user
     user = User.new new_user_params
     if user.save
