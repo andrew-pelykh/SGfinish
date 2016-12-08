@@ -4,19 +4,27 @@ import { Link } from 'react-router'
 import { hashHistory } from 'react-router'
 import { signOut } from '../actions/UserActions'
 class NavBar extends Component {
-
   render() {
+    if (this.props.routes[1].path == 'signup') {
+      return (
+          <div>
+          <h1>Welcome</h1>
+          {this.props.children}
+          </div>
+      )
 
-    return (
-        <div>
-            <Link to='/'> Home </Link>
-            <Link to='users'> All users </Link>
-            <Link to='settings'> Edit </Link>
-            <Link to='post'> New post </Link>
-            <a href='#'  onClick={(e) => this.onClick(e)}> SignOut </a>
-            {this.props.children}
-        </div>
-    )
+    } else {
+      return (
+          <div>
+              <Link to='/'> Home </Link>
+              <Link to='users'> All users </Link>
+              <Link to='settings'> Edit </Link>
+              <Link to='post'> New post </Link>
+              <a href='#'  onClick={(e) => this.onClick(e)}> SignOut </a>
+              {this.props.children}
+          </div>
+      )
+   }
   }
 
   onClick(event){

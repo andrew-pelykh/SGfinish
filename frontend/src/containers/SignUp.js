@@ -39,8 +39,7 @@ class SignUp extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
-    if ((nextProps.user.name != "" ) || (nextProps.current_user.name != "")) {
+    if ((nextProps.current_user.name !== "") && (this.props.current_user.name == "")) {
       hashHistory.push(`/`)
     }
   }
@@ -48,7 +47,6 @@ class SignUp extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
     current_user: state.current_user
   }
 }
