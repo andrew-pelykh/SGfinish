@@ -3,19 +3,23 @@ class PostsController < ApplicationController
 
   def get_posts
     user = User.find(params[:id])
-    render json: user.posts.all
+    posts = user.posts.all.map do |el|
+      post = el.attributes
+      post[:photo]=el.photo.url
+      post
+    end
+    render json: posts.to_json
   end
 
   def create_post
     post = current_user.posts.new(post_params)
     if post.save
-      render json: post
     else
       render json: post
     end
   end
 
   def post_params
-     params.require(:post).permit(:title, :body)
+     params.require(:post).permit(:title, :body,:photo)
   end
 end
