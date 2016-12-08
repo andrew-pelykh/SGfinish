@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'users#home'
   get 'get_user/:id' => 'users#get_user'
+  get 'get_users' => 'users#get_users'
   get 'get_friends/:id/:limit' => 'friendships#get_friends'
   post 'create_user' => 'users#create_user'
 
