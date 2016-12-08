@@ -11,6 +11,7 @@ class NewPost extends Component {
         <form id='new_post'onSubmit={(e) => this.onSubmit(e)}>
           <p><input type="text" name="post[title]" placeholder="Title" /></p>
           <p><input type="text" name="post[body]"  placeholder="Tell something " /></p>
+          <p><input type="file" name="post[photo]"/></p>
           <button>Post</button>
         </form>
       </div>
