@@ -5,7 +5,6 @@ export default class UsersList extends Component {
   render() {
     return (
       <div>
-        <h2>Friends</h2>
         {this.props.users.map(user => {
           return (
               <div key={'user'+user.id}>
