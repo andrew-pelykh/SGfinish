@@ -8,14 +8,9 @@ class Home extends Component {
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getCurrentUser())
-    if (this.props.current_user.name !== "") {
-      dispatch(getPosts(this.props.current_user.id))
-      dispatch(getFriends(this.props.current_user.id,8))
-    }
   }
   componentWillReceiveProps(nextProps) {
-    console.log("hasd")
-    if (nextProps.current_user.name !== "" && this.props.posts ==[] ) {
+    if (nextProps.current_user.id !== this.props.current_user.id){
       const { dispatch } = this.props
       dispatch(getPosts(nextProps.current_user.id))
       dispatch(getFriends(nextProps.current_user.id,8))
