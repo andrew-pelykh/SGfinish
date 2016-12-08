@@ -10,6 +10,7 @@ export default class PostsList extends Component {
               <div key={post.id+"_"+post.user_id}>
                 <h3>{post.title}</h3>
                 <p>{post.body}</p>
+                <img src={post.photo}/>
               </div>
           )
         })
