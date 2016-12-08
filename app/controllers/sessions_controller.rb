@@ -5,9 +5,9 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:user][:email].downcase)
     if user && user.authenticate(params[:user][:password])
       sign_in user
-      render json: { name:user.name, email:user.email, id:user.id, avatar:user.avatar.url }.to_json
+      render json: { name:user.name, email:user.email, id:user.id, avatar: user.avatar.url }.to_json
     else
-      render json: { name:user.name, email:user.email, id:user.id }.to_json
+      render json: { name:'', email:'', id:'' }.to_json
     end
   end
 
