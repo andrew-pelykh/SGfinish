@@ -12,6 +12,7 @@
 /db/*.sqlite3-journal
 /frontend/node_modules/*
 /public/js/bundle.js
+/public/uploads/*
 
 
 # Ignore all logfiles and tempfiles.
