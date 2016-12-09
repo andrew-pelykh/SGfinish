@@ -4,12 +4,8 @@ import { Link } from 'react-router'
 export default class NotFound extends Component {
   render() {
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-12'>
-            Sorry, this page isnt available . Go back <Link to='/'>home</Link>?
-          </div>
-        </div>
+      <div>
+        Sorry, this page isnt available . Go back <Link to='/'>home</Link>?
       </div>
     )
   }
