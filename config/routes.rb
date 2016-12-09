@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'get_current_user' => 'users#get_current_user'
   patch "/update_user" => 'users#update_user'
   get 'get_posts/:id' => 'posts#get_posts'
+  get 'get_photos/:id/:limit' => 'photos#get_photos'
   post 'create_post' => 'posts#create_post'
   get 'add_friend/:id' => 'friendships#add_friend'
   delete 'delete_friend/:id' => 'friendships#delete_friend'
