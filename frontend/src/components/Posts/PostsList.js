@@ -4,7 +4,7 @@ export default class PostsList extends Component {
   hasVideo (body){
     let link=body.video
     if (link){
-    return (<iframe title="YouTube video player" width="320" height="180" src={link} frameborder="0" allowfullscreen></iframe>)
+    return (<iframe title="YouTube video player" width="640" height="360" src={link} frameBorder="0" allowFullScreen></iframe>)
     } else {
       return (<div></div>)
     }

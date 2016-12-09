@@ -9,7 +9,7 @@ export default class UsersList extends Component {
           return (
               <div key={'user'+user.id}>
                 <img src={user.avatar}/>
-                <p><Link to={user.id.toString()}> {user.name} </Link></p>
+                <p><Link to={'users/' + user.id}> {user.name} </Link></p>
               </div>
           )
         })
