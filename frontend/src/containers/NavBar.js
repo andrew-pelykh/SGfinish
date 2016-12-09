@@ -2,8 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { hashHistory } from 'react-router'
+
 import { signOut } from '../actions/UserActions'
+
 class NavBar extends Component {
+
+  onClick(event){
+    event.preventDefault()
+    const { dispatch } = this.props
+    dispatch(signOut())
+    hashHistory.push(`/signup`)
+  }
+
   render() {
     if (this.props.children.type.name == "NotFound"|| this.props.children.type.name == "SignUp" ) {
       return (
@@ -11,7 +21,6 @@ class NavBar extends Component {
           {this.props.children}
           </div>
       )
-
     } else {
       return (
           <div>
@@ -23,14 +32,7 @@ class NavBar extends Component {
               {this.props.children}
           </div>
       )
-   }
-  }
-
-  onClick(event){
-    event.preventDefault()
-    const { dispatch } = this.props
-    dispatch(signOut())
-    hashHistory.push(`/signup`)
+    }
   }
 }
 

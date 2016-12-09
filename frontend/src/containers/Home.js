@@ -1,35 +1,39 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
+
 import { getCurrentUser, getFriends } from '../actions/UserActions'
+import { getPhotos } from '../actions/PhotoActions'
 import { getPosts } from '../actions/PostActions'
 import PostsList from '../components/Posts/PostsList'
 import UsersList from '../components/Users/UsersList'
-import { Link } from 'react-router'
-import { getPhotos } from '../actions/PhotoActions'
 import PhotosList from '../components/Photos/PhotosList'
 
 class Home extends Component {
+
+  loadData(load_props){
+    const { dispatch } = this.props
+    dispatch(getPosts(load_props.current_user.id))
+    dispatch(getFriends(load_props.current_user.id,8))
+    dispatch(getPhotos(load_props.current_user.id, 8))
+  }
+
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getCurrentUser())
     if (this.props.current_user.name !== ""){
-      dispatch(getPosts(this.props.current_user.id))
-      dispatch(getFriends(this.props.current_user.id,8))
-      dispatch(getPhotos(this.props.current_user.id, 8))
+      this.loadData(this.props)
     }
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.current_user.id !== this.props.current_user.id){
       const { dispatch } = this.props
-      dispatch(getPosts(nextProps.current_user.id))
-      dispatch(getFriends(nextProps.current_user.id,8))
-      dispatch(getPhotos(nextProps.current_user.id, 8))
+      this.loadData(nextProps)
     }
   }
 
   render() {
-
-
     return (
       <div>
        <img src={this.props.current_user.avatar}/>

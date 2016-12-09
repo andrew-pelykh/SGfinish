@@ -12,7 +12,6 @@ import NewPost from './containers/NewPost'
 import Gallery  from './containers/Gallery'
 import NotFound from './components/NotFound'
 
-
 export const routes = (
   <Route path="/" component={NavBar}>
     <IndexRoute component={Home} onEnter={checkLogin} />

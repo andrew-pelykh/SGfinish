@@ -1,13 +1,16 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
+
 import { getPhotos } from '../actions/PhotoActions'
 import PhotosList from '../components/Photos/PhotosList'
 
 class Gallery extends Component {
+
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getPhotos(this.props.params.id))
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
       const { dispatch } = this.props

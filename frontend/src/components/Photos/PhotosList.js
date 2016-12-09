@@ -2,6 +2,7 @@ import React, { Component} from 'react'
 import { Link } from 'react-router'
 
 export default class PhotosList extends Component {
+
   render() {
     return (
       <div>
@@ -10,8 +11,7 @@ export default class PhotosList extends Component {
               <div key={'photo'+photo.id}>
                 <img src={photo.url}/>
               </div>
-          )
-        })
+          )})
        }
     </div>
      )

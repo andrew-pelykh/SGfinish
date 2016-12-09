@@ -2,6 +2,7 @@ import React, { Component} from 'react'
 import { Link } from 'react-router'
 
 export default class UsersList extends Component {
+
   render() {
     return (
       <div>
@@ -11,8 +12,7 @@ export default class UsersList extends Component {
                 <img src={user.avatar}/>
                 <p><Link to={'users/' + user.id}> {user.name} </Link></p>
               </div>
-          )
-        })
+          )})
        }
     </div>
      )

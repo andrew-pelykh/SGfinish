@@ -1,9 +1,18 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { createPost } from '../actions/PostActions'
 import { hashHistory } from 'react-router'
 
+import { createPost } from '../actions/PostActions'
+
 class NewPost extends Component {
+
+  onSubmit(e){
+    e.preventDefault()
+    const { dispatch } = this.props
+    dispatch(createPost())
+    hashHistory.push(`/`)
+  }
+
   render() {
     return (
       <div>
@@ -15,13 +24,7 @@ class NewPost extends Component {
           <button>Post</button>
         </form>
       </div>
-     )
-  }
-  onSubmit(e){
-    e.preventDefault()
-    const { dispatch } = this.props
-    dispatch(createPost())
-    hashHistory.push(`/`)
+    )
   }
 }
 

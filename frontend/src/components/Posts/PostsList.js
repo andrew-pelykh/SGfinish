@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 
 export default class PostsList extends Component {
+
   hasVideo (body){
     let link=body.video
     if (link){
@@ -9,6 +10,7 @@ export default class PostsList extends Component {
       return (<div></div>)
     }
   }
+
   render() {
     return (
       <div>
@@ -21,8 +23,7 @@ export default class PostsList extends Component {
                 <img src={post.photo}/>
                 {this.hasVideo(post)}
               </div>
-          )
-        })
+          )})
        }
       </div>
      )

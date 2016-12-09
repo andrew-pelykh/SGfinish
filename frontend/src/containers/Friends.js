@@ -1,13 +1,16 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
+
 import { getFriends } from '../actions/UserActions'
 import UsersList from '../components/Users/UsersList'
 
 class Friends extends Component {
+
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getFriends(this.props.params.id))
   }
+  
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
       const { dispatch } = this.props

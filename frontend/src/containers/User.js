@@ -11,23 +11,22 @@ import PhotosList from '../components/Photos/PhotosList'
 
 class User extends Component {
 
-  loadData(props){
+  loadData(load_props){
+    const { dispatch } = this.props
     dispatch(getCurrentUser())
-    dispatch(getUser(this.props.params.id))
-    dispatch(getPosts(this.props.params.id))
-    dispatch(getFriends(this.props.params.id,8))
-    dispatch(getPhotos(this.props.params.id, 8))
+    dispatch(getUser(load_props.params.id))
+    dispatch(getPosts(load_props.params.id))
+    dispatch(getFriends(load_props.params.id,8))
+    dispatch(getPhotos(load_props.params.id, 8))
   }
 
   componentDidMount() {
-    const { dispatch } = this.props
-    loadData(this.props)
+    this.loadData(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
-      const { dispatch } = this.props
-      loadData(nextProps)
+      this.loadData(nextProps)
     }
   }
 
