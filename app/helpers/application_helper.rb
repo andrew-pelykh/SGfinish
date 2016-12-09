@@ -13,4 +13,8 @@ module ApplicationHelper
   def friends? (user1, user2)
     Friendship.exists?(user_id:user1.id, friend_id:user2.id)
   end
+
+  def friends_id(id)
+    Friendship.where(user_id:id).map {|el| el=el.friend.id }
+  end
 end
