@@ -5,8 +5,12 @@ module ApplicationHelper
       new_el[:name]=el.name
       new_el[:id]=el.id
       new_el[:avatar]=el.avatar.url
-      new_el[:friendship] = Friendship.exists?(user_id:current_user.id, friend_id:el.id)
+      new_el[:friendship] =  friends?(current_user, el)
       new_el
     end
+  end
+
+  def friends? (user1, user2)
+    Friendship.exists?(user_id:user1.id, friend_id:user2.id)
   end
 end

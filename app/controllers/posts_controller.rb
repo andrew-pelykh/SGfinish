@@ -15,6 +15,8 @@ class PostsController < ApplicationController
      render json: post.to_json
   end
 
+  private
+
   def post_params
      post_args = params.require(:post).permit(:title, :body, :photo)
   end

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def get_user
     user = User.find(params[:id])
-    render json: { name:user.name, email:user.email, id:user.id, avatar:user.avatar.url,isFriend:(Friendship.exists?(user_id:current_user.id, friend_id:user.id)) }.to_json
+    render_user(user)
   end
 
   def get_users
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     user = User.new new_user_params
     if user.save
       sign_in user
-      render json: { name:user.name, email:user.email, id:user.id, avatar:user.avatar.url }.to_json
+      render_current_user
     else
       render json: { name:"", email:"", id:"",avatar:""}.to_json
     end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def get_current_user
     if signed_in?
-      render json: { name:current_user.name, email:current_user.email, id:current_user.id, avatar:current_user.avatar.url }.to_json
+      render_current_user
     else
       render json: { name:"", email:"", id:"",avatar:""}.to_json
     end
@@ -39,13 +39,23 @@ class UsersController < ApplicationController
 
   def update_user
     if current_user.update_attributes(update_user_params)
-      render json: { name:current_user.name, email:current_user.email, id:current_user.id, avatar:current_user.avatar.url }.to_json
+      render_current_user
     else
       render json: { name:"", email:"", id:"",avatar:""}.to_json
     end
   end
 
   private
+
+    def render_user(user)
+      render json: { name:user.name, email:user.email, id:user.id, avatar:user.avatar.url,
+        isFriend: friends?(current_user, user) }.to_json
+    end
+
+    def render_current_user
+      render json: { name:current_user.name, email:current_user.email,
+        id:current_user.id, avatar:current_user.avatar.url }.to_json
+    end
 
     def new_user_params
        params.require(:user).permit(:name, :email, :password, :password_confirmation)

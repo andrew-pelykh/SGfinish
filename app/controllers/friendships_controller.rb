@@ -2,8 +2,8 @@ class FriendshipsController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
   def get_friends
+    friends_id = Friendship.where(user_id:params[:id]).map {|el| el=el.friend.id }
     if params[:limit] == "0"
-      friends_id = Friendship.where(user_id:params[:id]).map {|el| el=el.friend.id }
       users = map_users(User.where(id: friends_id))
     else
       users = map_users(User.where(id: friends_id).limit(params[:limit]))
@@ -24,8 +24,10 @@ class FriendshipsController < ApplicationController
     render_friend(user, params[:id])
   end
 
-  def render_friend(user, friend_id)
-    render json: { name:user.name, email:user.email, id:user.id, avatar:user.avatar.url,
-      isFriend:(Friendship.exists?(user_id:current_user.id, friend_id:user.id))}.to_json
-  end
+  private
+
+    def render_friend(user, friend_id)
+      render json: { name:user.name, email:user.email, id:user.id, avatar:user.avatar.url,
+        isFriend: friends?(current_user, user) }.to_json
+    end
 end
