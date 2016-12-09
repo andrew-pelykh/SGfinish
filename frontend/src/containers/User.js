@@ -4,6 +4,7 @@ import { getUser, getCurrentUser, getFriends } from '../actions/UserActions'
 import { getPosts } from '../actions/PostActions'
 import PostsList from '../components/Posts/PostsList'
 import UsersList from '../components/Users/UsersList'
+import { addFriend } from '../actions/UserActions'
 import { Link } from 'react-router'
 
 class User extends Component {
@@ -27,6 +28,18 @@ class User extends Component {
     }
   }
 
+  friend_link(friendship,id) {
+    if (friendship) {
+      return (<a href='#' onClick={(e) => this.onClick(e,id)}>Revome from friends</a>)
+    }
+      return (<a href='#' onClick={(e) => this.onClick(e,id)}>Add to friends</a>)
+  }
+  onClick(event,id){
+    event.preventDefault()
+    const { dispatch } = this.props
+    dispatch(addFriend(id))
+  }
+
   render() {
 
 
@@ -34,6 +47,7 @@ class User extends Component {
       <div>
         <img src={this.props.user.avatar}/>
         <p>{this.props.user.name}</p>
+        {this.friend_link(this.props.user.isFriend,this.props.user.id)}
         <p><Link to={'friends/'+ this.props.user.id}> Friends </Link></p>
         <UsersList users={Object.keys(this.props.users).map(key => this.props.users[key])} />
         <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
