@@ -1,13 +1,16 @@
-import { USER_SUCCESS, CREATE_SUCCESS, SIGNIN_SUCCESS, CURRENT_USER_SUCCESS, SIGNOUT_SUCCESS, UPDATE_SUCCESS, USERS_SUCCESS } from '../actions/UserActions'
+import { USER_SUCCESS, CREATE_SUCCESS, SIGNIN_SUCCESS, CURRENT_USER_SUCCESS, SIGNOUT_SUCCESS, UPDATE_SUCCESS, USERS_SUCCESS, ADD_FRIEND_SUCCESS } from '../actions/UserActions'
 
 const initialState = {
   name: "",
-  email:""
+  email:"",
+  isFriend: false
 }
 
 export function user(state = initialState, action) {
   switch(action.type) {
     case USER_SUCCESS:
+      return Object.assign({}, state, action.user)
+    case ADD_FRIEND_SUCCESS:
       return Object.assign({}, state, action.user)
     default:
       return state
