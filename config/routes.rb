@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   patch "/update_user" => 'users#update_user'
   get 'get_posts/:id' => 'posts#get_posts'
   post 'create_post' => 'posts#create_post'
+    get 'add_friend/:id' => 'friendships#add_friend'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
