@@ -10,4 +10,14 @@ class FriendshipsController < ApplicationController
       render json: users.to_json
     end
   end
+
+  def add_friend
+    friendship = Friendship.new(user_id:current_user.id, friend_id: params[:id])
+    user = User.find(params[:id])
+    if friendship.save
+      render json: { name:user.name, email:user.email, id:user.id, avatar:user.avatar.url, isFriend: true }.to_json
+    else
+      render json: { name:user.name, email:user.email, id:user.id, avatar:user.avatar.url, isFriend:(Friendship.exists?(user_id:current_user.id, friend_id:user.id))}.to_json
+    end
+  end
 end
