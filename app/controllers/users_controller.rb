@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def get_users
-    if params[:limit] == 0
+    if params[:limit] == "0"
       users = map_users(User.all)
       render json: users.to_json
     else
