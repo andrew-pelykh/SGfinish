@@ -14,8 +14,10 @@ class PostsController < ApplicationController
   def create_post
     post = current_user.posts.new(post_params)
     if post.save
+      current_user.photos.create(url:post.photo.url)
+      render json: post.to_json
     else
-      render json: post
+      render json: post.to_json
     end
   end
 
