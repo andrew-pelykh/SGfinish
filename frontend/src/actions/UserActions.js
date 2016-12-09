@@ -193,3 +193,27 @@ export function getUsers() {
       .then(response => { dispatch(usersSuccess(response.data)) })
   }
 }
+
+export const ADD_FRIEND_REQUEST = 'ADD_FRIEND_REQUEST'
+export const ADD_FRIEND_SUCCESS = 'ADD_FRIEND_SUCCESS'
+
+export function addFriendRequest() {
+  return {
+    type: ADD_FRIEND_REQUEST
+  }
+}
+
+export function addFriendSuccess(user) {
+  return {
+    type: ADD_FRIEND_SUCCESS,
+    user
+  }
+}
+
+export function addFriend(id) {
+  return dispatch => {
+    dispatch(addFriendRequest())
+    return axios.get('http://localhost:3000/add_friend/'+ id)
+      .then(response => { dispatch(addFriendSuccess(response.data)) })
+  }
+}
