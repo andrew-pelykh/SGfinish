@@ -59,11 +59,10 @@ class User extends Component {
         <img src={this.props.user.avatar}/>
         <p>{this.props.user.name}</p>
         {this.friend_link(this.props.user.isFriend,this.props.user.id)}
-        <p><Link to={'friends/'+ this.props.user.id}> Friends </Link></p>
         <PhotosList photos={Object.keys(this.props.photos).map(key => this.props.photos[key])} />
+        <p><Link to={'friends/'+ this.props.user.id}> Friends </Link></p>
         <UsersList users={Object.keys(this.props.users).map(key => this.props.users[key])} />
         <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
-
       </div>
     )
   }
