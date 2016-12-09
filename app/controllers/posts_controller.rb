@@ -4,8 +4,12 @@ class PostsController < ApplicationController
   def get_posts
     user = User.find(params[:id])
     posts = user.posts.all.map do |el|
-      post = el.attributes
+      post = {}
+      post[:title]=el.title
+      post[:id]=el.id
+      post[:body]=el.body
       post[:photo]=el.photo.url
+      has_video?(el.body) ? post[:video] = get_url(el.body) : nil
       post
     end
     render json: posts.to_json
@@ -22,6 +26,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-     params.require(:post).permit(:title, :body,:photo)
+     post_args = params.require(:post).permit(:title, :body, :photo)
   end
 end
