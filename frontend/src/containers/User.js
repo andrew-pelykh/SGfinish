@@ -2,8 +2,11 @@ import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { getUser, getCurrentUser, getFriends, addFriend, deleteFriend } from '../actions/UserActions'
 import { getPosts } from '../actions/PostActions'
+import { getPhotos } from '../actions/PhotoActions'
 import PostsList from '../components/Posts/PostsList'
 import UsersList from '../components/Users/UsersList'
+import PhotosList from '../components/Photos/PhotosList'
+
 import { Link } from 'react-router'
 
 class User extends Component {
@@ -14,6 +17,7 @@ class User extends Component {
     dispatch(getUser(this.props.params.id))
     dispatch(getPosts(this.props.params.id))
     dispatch(getFriends(this.props.params.id,8))
+    dispatch(getPhotos(this.props.params.id, 8))
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,6 +28,7 @@ class User extends Component {
       dispatch(getUser(nextProps.params.id))
       dispatch(getPosts(nextProps.params.id))
       dispatch(getFriends(nextProps.params.id, 8))
+      dispatch(getPhotos(nextProps.params.id, 8))
     }
   }
 
@@ -55,8 +60,10 @@ class User extends Component {
         <p>{this.props.user.name}</p>
         {this.friend_link(this.props.user.isFriend,this.props.user.id)}
         <p><Link to={'friends/'+ this.props.user.id}> Friends </Link></p>
+        <PhotosList photos={Object.keys(this.props.photos).map(key => this.props.photos[key])} />
         <UsersList users={Object.keys(this.props.users).map(key => this.props.users[key])} />
         <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
+
       </div>
     )
   }
@@ -67,7 +74,8 @@ function mapStateToProps(state) {
     user: state.user,
     current_user: state.current_user,
     posts: state.posts,
-    users: state.users
+    users: state.users,
+    photos: state.photos
   }
 }
 
