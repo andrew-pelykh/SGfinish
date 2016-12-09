@@ -217,3 +217,27 @@ export function addFriend(id) {
       .then(response => { dispatch(addFriendSuccess(response.data)) })
   }
 }
+
+export const DELETE_FRIEND_REQUEST = 'DELETE_FRIEND_REQUEST'
+export const DELETE_FRIEND_SUCCESS = 'DELETE_FRIEND_SUCCESS'
+
+export function deleteFriendRequest() {
+  return {
+    type: DELETE_FRIEND_REQUEST
+  }
+}
+
+export function deleteFriendSuccess(user) {
+  return {
+    type: DELETE_FRIEND_SUCCESS,
+    user
+  }
+}
+
+export function deleteFriend(id) {
+  return dispatch => {
+    dispatch(deleteFriendRequest())
+    return axios.delete('http://localhost:3000/delete_friend/'+ id)
+      .then(response => { dispatch(deleteFriendSuccess(response.data)) })
+  }
+}
