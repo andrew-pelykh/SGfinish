@@ -23,24 +23,8 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.update_attributes(email: " ")
   end
 
-  def test_when_email_is_valid
-    addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
-    addresses.each do |valid_address|
-      assert @user.update_attributes(email: valid_address)
-    end
-  end
-
-  def test_when_email_is_invalid
-    addresses = %w[user@foo,com user_at_foo.org example.user@foo.
-                   foo@bar_baz.com foo@bar+baz.com,foo@bar..com]
-    addresses.each do |invalid_address|
-      assert_not @user.update_attributes(email: invalid_address)
-    end
-  end
-
   def test_when_email_is_already_taken
-    user = @user.dup
-    assert_not user.save
+    assert_not @user.dup.save
   end
 
   def test_when_email_is_already_taken_in_upcase
@@ -78,5 +62,52 @@ class UserTest < ActiveSupport::TestCase
   def test_remember_token_should_not_be_blank
     @user.save
     assert_not @user.remember_token.blank?
+  end
+
+
+
+  def test_posts_should_be_in_right_order
+    second_post = create(:post, user: @user, created_at: 1.day.ago)
+    first_post = create(:post, user: @user, created_at: 1.hour.ago)
+    assert_equal [first_post, second_post], @user.posts.to_a
+  end
+
+  def test_posts_should_be_deleted_with_user
+    create(:post , user: @user)
+    @user.destroy
+    assert Post.all
+  end
+
+  def test_friendships_should_be_deleted_with_user
+    friendship = create(:friendship , user: @user)
+    friendship.destroy
+    assert Friendship.all
+  end
+
+  def test_photos_should_be_deleted_with_user
+    photo = create(:photo , user: @user)
+    photo.destroy
+    assert Photo.all
+  end
+
+  def self.valid_emails
+    %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
+  end
+
+  def self.invalid_emails
+    %w[user@foo,com user_at_foo.org example.user@foo.
+                   foo@bar_baz.com foo@bar+baz.com,foo@bar..com]
+  end
+
+  valid_emails.each do |email|
+    define_method("test_when_body_has_valid_email_#{email}") do
+      assert @user.update_attributes(email: email)
+    end
+  end
+
+  invalid_emails.each do |email|
+    define_method("test_when_body_has_invalid_email_#{email}") do
+      assert_not @user.update_attributes(email: email)
+    end
   end
 end
