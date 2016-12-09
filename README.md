@@ -1,12 +1,14 @@
 # SGfinish
 
-Social network made by usinh react, redux, and react-routes.
+Social network made by using react, redux, and react-routes.
 ***
 
 ### Run server           
 
-Firstly, run command ```npm install``` in  ```frontend/``` directory.        
+Firstly, run  ```npm install``` in  ```frontend/``` directory to install node modules.        
 
-Secondly, run command ```npm run build``` in  ```frontend/``` directory.        
+Secondly, run  ```npm run build``` in  ```frontend/``` directory to generate bundle js file.        
 
-At the last, run command ```rails s``` in  project directory.
+To run server run  ```rails s```.
+
+Also you can run ```rake db:seed``` to populate db.
