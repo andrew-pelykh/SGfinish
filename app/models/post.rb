@@ -13,7 +13,7 @@ class Post < ActiveRecord::Base
   validates :body, format: { without: /(((https?)?:\057\057)|(www.))[a-z_.]+[a-z_]{2,3}/i},if: :not_only_youtube_link?
 
   def no_photo?
-    photo == nil
+    photo.url == nil
   end
 
   def not_only_youtube_link?
