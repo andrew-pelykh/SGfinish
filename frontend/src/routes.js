@@ -10,7 +10,7 @@ import Friends from './containers/Friends'
 import EditUser from './containers/EditUser'
 import NewPost from './containers/NewPost'
 import Gallery  from './containers/Gallery'
-
+import NotFound from './components/NotFound'
 
 
 export const routes = (
@@ -23,6 +23,7 @@ export const routes = (
     <Route path="friends/:id" component={Friends} onEnter={checkLogin} />
     <Route path="photos/:id" component={Gallery} onEnter={checkLogin} />
     <Route path="users/:id" component={User} onEnter={checkLogin} />
+    <Route path='*' component={NotFound} />
   </Route>
 )
 

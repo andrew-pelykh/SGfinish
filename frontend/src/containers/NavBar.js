@@ -5,10 +5,9 @@ import { hashHistory } from 'react-router'
 import { signOut } from '../actions/UserActions'
 class NavBar extends Component {
   render() {
-    if (this.props.routes[1].path == 'signup') {
+    if (this.props.children.type.name == "NotFound"|| this.props.children.type.name == "SignUp" ) {
       return (
           <div>
-          <h1>Welcome</h1>
           {this.props.children}
           </div>
       )
