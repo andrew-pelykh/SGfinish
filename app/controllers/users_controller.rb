@@ -11,18 +11,10 @@ class UsersController < ApplicationController
 
   def get_users
     if params[:limit] == 0
-      users = User.all.map do |el|
-        user = el.attributes
-        user[:avatar]=el.avatar.url
-        user
-      end
+      users = map_users(User.all)
       render json: users.to_json
     else
-      users = User.all.limit(params[:limit]).map do |el|
-        user = el.attributes
-        user[:avatar]=el.avatar.url
-        user
-      end
+      users = map_users(User.all.limit(params[:limit]))
       render json: users.to_json
     end
   end

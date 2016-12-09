@@ -3,18 +3,10 @@ class FriendshipsController < ApplicationController
 
   def get_friends
     if params[:limit] == "0"
-      users = User.where(id: Friendship.where(user_id:params[:id]).map {|el| el=el.friend.id }).map do |el|
-        user = el.attributes
-        user[:avatar]=el.avatar.url
-        user
-      end
+      users = map_users(User.where(id: Friendship.where(user_id:params[:id]).map {|el| el=el.friend.id }))
       render json: users.to_json
     else
-      users = User.where(id: Friendship.where(user_id:params[:id]).map {|el| el=el.friend.id }).limit(params[:limit]).map do |el|
-        user = el.attributes
-        user[:avatar]=el.avatar.url
-        user
-      end
+      users = map_users(User.where(id: Friendship.where(user_id:params[:id]).map {|el| el=el.friend.id }).limit(params[:limit]))
       render json: users.to_json
     end
   end
