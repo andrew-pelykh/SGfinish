@@ -1,10 +1,9 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { getUser, getCurrentUser, getFriends } from '../actions/UserActions'
+import { getUser, getCurrentUser, getFriends, addFriend, deleteFriend } from '../actions/UserActions'
 import { getPosts } from '../actions/PostActions'
 import PostsList from '../components/Posts/PostsList'
 import UsersList from '../components/Users/UsersList'
-import { addFriend } from '../actions/UserActions'
 import { Link } from 'react-router'
 
 class User extends Component {
@@ -30,14 +29,21 @@ class User extends Component {
 
   friend_link(friendship,id) {
     if (friendship) {
-      return (<a href='#' onClick={(e) => this.onClick(e,id)}>Revome from friends</a>)
+      return (<a href='#' onClick={(e) => this.onClickDeleteFriend(e,id)}>Revome from friends</a>)
     }
-      return (<a href='#' onClick={(e) => this.onClick(e,id)}>Add to friends</a>)
+      return (<a href='#' onClick={(e) => this.onClickAddFriend(e,id)}>Add to friends</a>)
   }
-  onClick(event,id){
+
+  onClickAddFriend(event,id){
     event.preventDefault()
     const { dispatch } = this.props
     dispatch(addFriend(id))
+  }
+
+  onClickDeleteFriend(event,id){
+    event.preventDefault()
+    const { dispatch } = this.props
+    dispatch(deleteFriend(id))
   }
 
   render() {
