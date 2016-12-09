@@ -1,5 +1,7 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
+
 import { getUser, getCurrentUser, getFriends, addFriend, deleteFriend } from '../actions/UserActions'
 import { getPosts } from '../actions/PostActions'
 import { getPhotos } from '../actions/PhotoActions'
@@ -7,12 +9,9 @@ import PostsList from '../components/Posts/PostsList'
 import UsersList from '../components/Users/UsersList'
 import PhotosList from '../components/Photos/PhotosList'
 
-import { Link } from 'react-router'
-
 class User extends Component {
 
-  componentDidMount() {
-    const { dispatch } = this.props
+  loadData(props){
     dispatch(getCurrentUser())
     dispatch(getUser(this.props.params.id))
     dispatch(getPosts(this.props.params.id))
@@ -20,15 +19,15 @@ class User extends Component {
     dispatch(getPhotos(this.props.params.id, 8))
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidMount() {
+    const { dispatch } = this.props
+    loadData(this.props)
+  }
 
+  componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
       const { dispatch } = this.props
-      dispatch(getCurrentUser())
-      dispatch(getUser(nextProps.params.id))
-      dispatch(getPosts(nextProps.params.id))
-      dispatch(getFriends(nextProps.params.id, 8))
-      dispatch(getPhotos(nextProps.params.id, 8))
+      loadData(nextProps)
     }
   }
 
@@ -52,17 +51,18 @@ class User extends Component {
   }
 
   render() {
-
-
     return (
       <div>
         <img src={this.props.user.avatar}/>
         <p>{this.props.user.name}</p>
         {this.friend_link(this.props.user.isFriend,this.props.user.id)}
+
         <p><Link to={'photos/'+ this.props.user.id}> Gallery </Link></p>
         <PhotosList photos={Object.keys(this.props.photos).map(key => this.props.photos[key])} />
+
         <p><Link to={'friends/'+ this.props.user.id}> Friends </Link></p>
         <UsersList users={Object.keys(this.props.users).map(key => this.props.users[key])} />
+
         <PostsList posts={Object.keys(this.props.posts).map(key => this.props.posts[key])} />
       </div>
     )
